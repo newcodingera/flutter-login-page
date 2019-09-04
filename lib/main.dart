@@ -5,14 +5,10 @@ void main() => runApp(MyApp());
 enum AuthMode { LOGIN, SINGUP }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: LoginPage(),
     );
   }
@@ -24,13 +20,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  double deviceHeight;
+  // To adjust the layout according to the screen size
+  // so that our layout remains responsive ,we need to
+  // calculate the screen height
+  double screenHeight;
 
+  // Set intial mode to login
   AuthMode _authMode = AuthMode.LOGIN;
 
   @override
   Widget build(BuildContext context) {
-    deviceHeight = MediaQuery.of(context).size.height;
+    screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: deviceHeight / 4),
+          margin: EdgeInsets.only(top: screenHeight / 4),
           padding: EdgeInsets.only(left: 10, right: 10),
           child: Card(
             shape: RoundedRectangleBorder(
@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: deviceHeight / 5),
+          margin: EdgeInsets.only(top: screenHeight / 5),
           padding: EdgeInsets.only(left: 10, right: 10),
           child: Card(
             shape: RoundedRectangleBorder(
@@ -288,7 +288,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget upperHalf(BuildContext context) {
     return Container(
-      height: deviceHeight / 2,
+      height: screenHeight / 2,
       child: Image.asset(
         'assets/house.jpg',
         fit: BoxFit.cover,
@@ -300,7 +300,7 @@ class _LoginPageState extends State<LoginPage> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: deviceHeight / 2,
+        height: screenHeight / 2,
         color: Color(0xFFECF0F3),
       ),
     );
